@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImgCompress - Professional Image Compression Tool</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-compress-alt"></i>
+                <h1>ImgCompress</h1>
+            </div>
+            <p class="tagline">Compress, resize, and convert your images with ease</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Upload Area -->
+            <div class="upload-container">
+                <div class="drop-area" id="dropArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h3>Drag & Drop your image here</h3>
+                    <p>or</p>
+                    <label for="fileInput" class="upload-btn">Browse Files</label>
+                    <input type="file" id="fileInput" accept="image/*" hidden>
+                    <p class="file-info">Supported formats: JPG, PNG, GIF, WebP, BMP</p>
+                </div>
+            </div>
+
+            <!-- Editor Area (initially hidden) -->
+            <div class="editor-container" id="editorContainer">
+                <div class="preview-container">
+                    <!-- Original Image Preview -->
+                    <div class="preview-card">
+                        <h3>Original</h3>
+                        <div class="image-preview" id="originalPreview">
+                            <img id="originalImage" src="" alt="Original Image">
+                        </div>
+                        <div class="image-info" id="originalInfo">
+                            <p>Size: <span id="originalSize">0 KB</span></p>
+                            <p>Dimensions: <span id="originalDimensions">0 x 0</span></p>
+                        </div>
+                    </div>
+                    
+                    <!-- Compressed Image Preview -->
+                    <div class="preview-card">
+                        <h3>Compressed</h3>
+                        <div class="image-preview" id="compressedPreview">
+                            <img id="compressedImage" src="" alt="Compressed Image">
+                        </div>
+                        <div class="image-info" id="compressedInfo">
+                            <p>Size: <span id="compressedSize">0 KB</span></p>
+                            <p>Dimensions: <span id="compressedDimensions">0 x 0</span></p>
+                            <p>Reduction: <span id="reductionPercentage">0%</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Control Panel -->
+                <div class="controls-container">
+                    <!-- Compression Settings -->
+                    <div class="control-group">
+                        <h3>Compression Settings</h3>
+                        <div class="control-item">
+                            <label for="qualitySlider">Quality Level:</label>
+                            <input type="range" id="qualitySlider" min="0" max="100" value="80" class="slider">
+                            <span id="qualityValue">80%</span>
+                        </div>
+                        <div class="control-item">
+                            <label for="maxSizeInput">Target File Size (KB):</label>
+                            <input type="number" id="maxSizeInput" min="1" value="200" class="number-input">
+                        </div>
+                    </div>
+
+                    <!-- Resize Options -->
+                    <div class="control-group">
+                        <h3>Resize Options</h3>
+                        <div class="control-item">
+                            <label for="resizeCheckbox">Resize Image:</label>
+                            <input type="checkbox" id="resizeCheckbox" class="toggle-checkbox">
+                        </div>
+                        <div class="resize-options" id="resizeOptions">
+                            <div class="control-item">
+                                <label for="widthInput">Width (px):</label>
+                                <input type="number" id="widthInput" min="1" class="number-input">
+                            </div>
+                            <div class="control-item">
+                                <label for="heightInput">Height (px):</label>
+                                <input type="number" id="heightInput" min="1" class="number-input">
+                            </div>
+                            <div class="control-item">
+                                <label for="aspectRatioCheckbox">Maintain aspect ratio:</label>
+                                <input type="checkbox" id="aspectRatioCheckbox" class="toggle-checkbox" checked>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Output Format Options -->
+                    <div class="control-group">
+                        <h3>Output Format</h3>
+                        <div class="format-options">
+                            <label class="format-option">
+                                <input type="radio" name="format" value="jpeg" checked>
+                                <span class="format-label">JPEG</span>
+                            </label>
+                            <label class="format-option">
+                                <input type="radio" name="format" value="png">
+                                <span class="format-label">PNG</span>
+                            </label>
+                            <label class="format-option">
+                                <input type="radio" name="format" value="webp">
+                                <span class="format-label">WebP</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button id="compressBtn" class="primary-btn" disabled>Compress Image</button>
+                        <button id="downloadBtn" class="secondary-btn" disabled>Download Image</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Features Section -->
+    <div class="features-section">
+        <div class="container">
+            <h2>Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <h3>Fast Compression</h3>
+                    <p>Compress your images in seconds without sacrificing quality</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-exchange-alt"></i></div>
+                    <h3>Format Conversion</h3>
+                    <p>Convert between different image formats with ease</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-lock"></i></div>
+                    <h3>Privacy First</h3>
+                    <p>All processing happens locally - your images never leave your device</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>Mobile Friendly</h3>
+                    <p>Fully responsive design works great on all devices</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 ImgCompress. All rights reserved.</p>
+            <p>A professional tool for image compression and conversion.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
